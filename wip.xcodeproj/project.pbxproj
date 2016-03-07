@@ -14,6 +14,10 @@
 		E56F1EF71C873D6600635CA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56F1EF51C873D6600635CA4 /* LaunchScreen.storyboard */; };
 		E56F1F021C873D6600635CA4 /* wipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F1F011C873D6600635CA4 /* wipTests.swift */; };
 		E56F1F0D1C873D6600635CA4 /* wipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F1F0C1C873D6600635CA4 /* wipUITests.swift */; };
+		E56F1F1B1C88BF6A00635CA4 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F1F1A1C88BF6A00635CA4 /* ItemViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E56F1F1D1C88BF7C00635CA4 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F1F1C1C88BF7C00635CA4 /* StatsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E56F1F1F1C88BF9A00635CA4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F1F1E1C88BF9A00635CA4 /* Player.swift */; settings = {ASSET_TAGS = (); }; };
+		E56F1F211C88C35500635CA4 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F1F201C88C35500635CA4 /* Enemy.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		E56F1F081C873D6600635CA4 /* wipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56F1F0C1C873D6600635CA4 /* wipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wipUITests.swift; sourceTree = "<group>"; };
 		E56F1F0E1C873D6600635CA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E56F1F1A1C88BF6A00635CA4 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		E56F1F1C1C88BF7C00635CA4 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		E56F1F1E1C88BF9A00635CA4 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		E56F1F201C88C35500635CA4 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +107,11 @@
 			children = (
 				E56F1EEC1C873D6500635CA4 /* AppDelegate.swift */,
 				E56F1EEE1C873D6500635CA4 /* ViewController.swift */,
+				E56F1F201C88C35500635CA4 /* Enemy.swift */,
 				E56F1EF01C873D6500635CA4 /* Main.storyboard */,
+				E56F1F1A1C88BF6A00635CA4 /* ItemViewController.swift */,
+				E56F1F1C1C88BF7C00635CA4 /* StatsViewController.swift */,
+				E56F1F1E1C88BF9A00635CA4 /* Player.swift */,
 				E56F1EF31C873D6600635CA4 /* Assets.xcassets */,
 				E56F1EF51C873D6600635CA4 /* LaunchScreen.storyboard */,
 				E56F1EF81C873D6600635CA4 /* Info.plist */,
@@ -260,6 +272,10 @@
 			files = (
 				E56F1EEF1C873D6500635CA4 /* ViewController.swift in Sources */,
 				E56F1EED1C873D6500635CA4 /* AppDelegate.swift in Sources */,
+				E56F1F211C88C35500635CA4 /* Enemy.swift in Sources */,
+				E56F1F1D1C88BF7C00635CA4 /* StatsViewController.swift in Sources */,
+				E56F1F1F1C88BF9A00635CA4 /* Player.swift in Sources */,
+				E56F1F1B1C88BF6A00635CA4 /* ItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
