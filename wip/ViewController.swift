@@ -79,8 +79,15 @@ class ViewController: UIViewController {
                     print(enemy.health)
                     enemyHealthAmount.text = String(enemy.health)
                     enemyHealthBar.progress = Float(enemy.health)
-                    if enemy.health == 0
+                    if enemy.health <= 0
                     {
+                        enemyNameLabel.text = " "
+                        enemyHealthAmount.text = " "
+                        enemyHealthBar.alpha = 0
+                        attackButton.alpha = 0
+                        runButton.alpha = 0
+                        tempWayToCauseEventToFireButton.alpha = 1
+
                         
                     }
                 }
@@ -125,7 +132,6 @@ class ViewController: UIViewController {
                 }
             }
         }
-
     }
 }
 
