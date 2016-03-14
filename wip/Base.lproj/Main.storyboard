@@ -259,26 +259,41 @@
                                 <rect key="frame" x="282" y="449" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="use"/>
+                                <connections>
+                                    <action selector="mathOnPush:" destination="r4H-Ex-OPy" eventType="touchUpInside" id="1Bm-TT-Hd1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eht-NO-SR6">
                                 <rect key="frame" x="282" y="366" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="use"/>
+                                <connections>
+                                    <action selector="waterBalloonOnPush:" destination="r4H-Ex-OPy" eventType="touchUpInside" id="Brl-kn-YGt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpQ-NI-2EL">
                                 <rect key="frame" x="282" y="293" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="use"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-DZ-PI2">
-                                <rect key="frame" x="282" y="210" width="30" height="30"/>
-                                <animations/>
-                                <state key="normal" title="use"/>
+                                <connections>
+                                    <action selector="shockGumOnPush:" destination="r4H-Ex-OPy" eventType="touchUpInside" id="Txr-ps-JTG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkI-mD-BNc">
                                 <rect key="frame" x="282" y="130" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="use"/>
+                                <connections>
+                                    <action selector="dietSodaOnPush:" destination="r4H-Ex-OPy" eventType="touchUpInside" id="V4O-Ub-CQW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-DZ-PI2">
+                                <rect key="frame" x="282" y="210" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="use"/>
+                                <connections>
+                                    <action selector="sodaOnPush:" destination="r4H-Ex-OPy" eventType="touchUpInside" id="CzS-9o-nvX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -287,10 +302,15 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="dietSodaAmount" destination="Mge-er-6GP" id="PZ5-hu-JDy"/>
+                        <outlet property="dietSodaButton" destination="gkI-mD-BNc" id="zmP-4h-CL8"/>
                         <outlet property="matchAmount" destination="i4p-hM-qd6" id="00W-lA-QNs"/>
+                        <outlet property="matchButton" destination="4l2-0h-5YM" id="rwA-79-Hxr"/>
                         <outlet property="shockGumAmount" destination="iSB-2J-AvN" id="1Hy-Xn-wDv"/>
+                        <outlet property="shockGumButton" destination="lpQ-NI-2EL" id="UuL-ij-XDk"/>
                         <outlet property="sodaAmount" destination="QHU-M7-lhV" id="kwP-Ol-ZQh"/>
+                        <outlet property="sodaButton" destination="pJP-DZ-PI2" id="GsC-RE-7JO"/>
                         <outlet property="waterBalloonAmount" destination="XZo-aw-GdC" id="IWZ-Gn-zCz"/>
+                        <outlet property="waterBalloonButton" destination="Eht-NO-SR6" id="TWd-gT-nAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzr-ma-UfG" userLabel="First Responder" sceneMemberID="firstResponder"/>
