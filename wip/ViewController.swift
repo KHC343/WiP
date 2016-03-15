@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     var enemy = Enemy()
     let date = NSDate()
     let calendar = NSCalendar.currentCalendar()
+    var whichViewSwitch = Int()
     
 
     class Date {
@@ -154,11 +155,26 @@ class ViewController: UIViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dvc = segue.destinationViewController as! ItemViewController
-        dvc.player = player
-        
+    @IBAction func itemButtonOnPush(sender: AnyObject) {
+        whichViewSwitch = 1
     }
-
+    
+    @IBAction func statsButtonOnPush(sender: AnyObject) {
+        whichViewSwitch = 2
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if whichViewSwitch == 1
+        {
+            let dvc = segue.destinationViewController as! ItemViewController
+            dvc.player = player
+        }
+        else
+        {
+            let odvc = segue.destinationViewController as! StatsViewController
+            odvc.player = player
+        }
+    }
 }
 

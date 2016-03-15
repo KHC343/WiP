@@ -15,9 +15,15 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var magicAmount: UILabel!
     @IBOutlet weak var lvl: UILabel!
     @IBOutlet weak var expProgress: UIProgressView!
+    var player = Player()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        strAmount.text = String(player.str)
+        dexAmount.text = String(player.dex)
+        defAmount.text = String(player.def)
+        magicAmount.text = String(player.magic)
+        lvl.text = String(player.level)
 
     }
 
