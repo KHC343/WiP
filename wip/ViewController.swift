@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 class ViewController: UIViewController {
     @IBOutlet weak var mainImage: UIImageView!
@@ -24,14 +25,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var healthAmount: UILabel!
     @IBOutlet weak var enemyHealthAmount: UILabel!
     var player = Player()
+    let activityManager = CMMotionActivityManager()
+    var days:[String] = []
+    var stepsTaken:[Int] = []
+    var stepper = CMPedometer()
     var enemy = Enemy()
+    let date = NSDate()
+    let calendar = NSCalendar.currentCalendar()
+    
 
+    class Date {
+        let calendar = NSCalendar.currentCalendar()
+        var day: Int {
+            return  calendar.component(.Day, fromDate: NSDate())
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         player = Player(str: 1, dex: 1, magic: 0, def: 1, health: 10, level: 0, soda: 0, dietSoda: 0, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10)
         attackButton?.alpha = 0
         runButton?.alpha = 0
         continueButton?.alpha = 0
+        let cal = NSCalendar.currentCalendar()
+          let comps = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: NSDate())
+        comps.hour = 0
+        comps.minute = 0
+        comps.second = 0
+        let timeZone = NSTimeZone.systemTimeZone()
+        cal.timeZone = timeZone
         
         
     }
