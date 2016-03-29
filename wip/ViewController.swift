@@ -170,7 +170,7 @@ class ViewController: UIViewController {
             let dvc = segue.destinationViewController as! ItemViewController
             dvc.player = player
         }
-        else
+        else if whichViewSwitch == 2
         {
             let odvc = segue.destinationViewController as! StatsViewController
             odvc.player = player

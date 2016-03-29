@@ -15,6 +15,10 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var magicAmount: UILabel!
     @IBOutlet weak var lvl: UILabel!
     @IBOutlet weak var expProgress: UIProgressView!
+    @IBOutlet weak var strButton: UIButton!
+    @IBOutlet weak var dexButton: UIButton!
+    @IBOutlet weak var defButton: UIButton!
+    @IBOutlet weak var magicButton: UIButton!
     var player = Player()
 
     override func viewDidLoad() {
@@ -24,7 +28,10 @@ class StatsViewController: UIViewController {
         defAmount.text = String(player.def)
         magicAmount.text = String(player.magic)
         lvl.text = String(player.level)
-
+        strButton.alpha = 0
+        dexButton.alpha = 0
+        defButton.alpha = 0
+        magicButton.alpha = 0
     }
 
     override func didReceiveMemoryWarning() {

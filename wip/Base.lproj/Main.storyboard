@@ -417,11 +417,6 @@
                                 <animations/>
                                 <state key="normal" title="increase"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57p-De-BLD">
-                                <rect key="frame" x="310" y="304" width="58" height="30"/>
-                                <animations/>
-                                <state key="normal" title="increase"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqO-T7-fkM">
                                 <rect key="frame" x="310" y="370" width="58" height="30"/>
                                 <animations/>
@@ -432,6 +427,11 @@
                                 <animations/>
                                 <state key="normal" title="increase"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57p-De-BLD">
+                                <rect key="frame" x="310" y="304" width="58" height="30"/>
+                                <animations/>
+                                <state key="normal" title="increase"/>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -439,11 +439,15 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="defAmount" destination="Dza-PF-gQj" id="Nd9-f6-3mp"/>
+                        <outlet property="defButton" destination="57p-De-BLD" id="Oca-Qo-e9h"/>
                         <outlet property="dexAmount" destination="j02-i8-aUt" id="zkC-hh-7YE"/>
+                        <outlet property="dexButton" destination="SOl-aD-WIX" id="DTm-U9-mGK"/>
                         <outlet property="expProgress" destination="dnO-4K-kB7" id="rup-AN-7cl"/>
                         <outlet property="lvl" destination="YXY-Pz-xIs" id="U7x-qo-Kqe"/>
                         <outlet property="magicAmount" destination="v93-oa-bKM" id="toh-YT-y9y"/>
+                        <outlet property="magicButton" destination="hqO-T7-fkM" id="Uli-tg-4QN"/>
                         <outlet property="strAmount" destination="6jt-6Y-a51" id="anv-eI-7TD"/>
+                        <outlet property="strButton" destination="mNd-u9-sbg" id="ME5-gh-FvB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mg8-hK-ohs" userLabel="First Responder" sceneMemberID="firstResponder"/>
