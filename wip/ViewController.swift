@@ -55,6 +55,7 @@ class ViewController: UIViewController {
         comps.second = 0
         let timeZone = NSTimeZone.systemTimeZone()
         cal.timeZone = timeZone
+        whichViewSwitch = 0
         
         
     }
@@ -176,5 +177,10 @@ class ViewController: UIViewController {
             odvc.player = player
         }
     }
-}
+    
 
+@IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    
+
+    }
+}

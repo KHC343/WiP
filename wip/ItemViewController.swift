@@ -100,9 +100,4 @@ class ItemViewController: UIViewController {
             matchButton.alpha = 0
         }
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dvc = segue.destinationViewController as! ViewController
-        dvc.player = player
-        
     }
-}
