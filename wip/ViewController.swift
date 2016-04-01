@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     var player = Player()
     let activityManager = CMMotionActivityManager()
     var days:[String] = []
-    var stepsTaken:[Int] = []
+    var stepsTaken = 0
     var stepper = CMPedometer()
     var enemy = Enemy()
     let date = NSDate()
@@ -57,6 +57,9 @@ class ViewController: UIViewController {
         cal.timeZone = timeZone
         whichViewSwitch = 0
         
+        stepper.startPedometerUpdatesFromDate(date) { (data, error) -> Void in
+            self.stepsTaken = (data?.numberOfSteps.integerValue)!
+        }
         
     }
 
