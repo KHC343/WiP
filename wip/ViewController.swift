@@ -58,7 +58,16 @@ class ViewController: UIViewController {
         whichViewSwitch = 0
         
         stepper.startPedometerUpdatesFromDate(date) { (data, error) -> Void in
-            self.stepsTaken = (data?.numberOfSteps.integerValue)!
+            print(data?.numberOfSteps.integerValue)
+            if data?.numberOfSteps.intValue > 0
+            {
+                self.stepsTaken = (data?.numberOfSteps.integerValue)!
+            }
+            else
+            {
+                self.stepsTaken = 0
+            }
+            
         }
         
     }
@@ -69,7 +78,7 @@ class ViewController: UIViewController {
 
     @IBAction func tempWayToCauseEventToFire(sender: AnyObject) {
         //let roll1 =  Int(arc4random_uniform(100)) + 1 (later set up percentages we agreed on.)
-        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Ant", health: 10)
+        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
         enemyNameLabel.text = String(enemy.name)
         enemyHealthAmount.text = String(enemy.health)
         enemyHealthBar.progress = Float(enemy.health)
