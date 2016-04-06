@@ -20,7 +20,7 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var waterBalloonButton: UIButton!
     @IBOutlet weak var matchButton: UIButton!
     var player = Player()
-
+    var inKombat = Bool()
     override func viewDidLoad() {
         super.viewDidLoad()
         dietSodaAmount.text = String(player.dietSoda)
@@ -100,4 +100,10 @@ class ItemViewController: UIViewController {
             matchButton.alpha = 0
         }
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dvc = segue.destinationViewController as! ViewController
+        dvc.player = player
+        dvc.inKombat = inKombat
+    }
+
     }

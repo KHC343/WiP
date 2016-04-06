@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var healthAmount: UILabel!
     @IBOutlet weak var enemyHealthAmount: UILabel!
+    var inKombat = Bool()
     var player = Player()
     let activityManager = CMMotionActivityManager()
     var days:[String] = []
@@ -44,7 +45,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        player = Player(str: 1, dex: 1, magic: 0, def: 1, health: 10, level: 0, soda: 0, dietSoda: 0, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10)
+        player = Player(str: 1, dex: 1, magic: 0, def: 1, health: 10, level: 0, soda: 1, dietSoda: 0, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10)
+        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
         attackButton?.alpha = 0
         runButton?.alpha = 0
         continueButton?.alpha = 0
@@ -57,6 +59,7 @@ class ViewController: UIViewController {
         cal.timeZone = timeZone
         whichViewSwitch = 0
         
+        
         stepper.startPedometerUpdatesFromDate(date) { (data, error) -> Void in
             print(data?.numberOfSteps.integerValue)
             if data?.numberOfSteps.intValue > 0
@@ -67,9 +70,19 @@ class ViewController: UIViewController {
             {
                 self.stepsTaken = 0
             }
-            
         }
         
+        if self.inKombat == true
+        {
+            self.enemyNameLabel.text = String(self.enemy.name)
+            self.enemyHealthAmount.text = String(self.enemy.health)
+            self.enemyHealthBar.progress = Float(self.enemy.health)
+            self.attackButton.alpha = 1
+            self.runButton.alpha = 1
+            self.tempWayToCauseEventToFireButton.alpha = 0
+            self.inKombat = true
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,13 +91,13 @@ class ViewController: UIViewController {
 
     @IBAction func tempWayToCauseEventToFire(sender: AnyObject) {
         //let roll1 =  Int(arc4random_uniform(100)) + 1 (later set up percentages we agreed on.)
-        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
         enemyNameLabel.text = String(enemy.name)
         enemyHealthAmount.text = String(enemy.health)
         enemyHealthBar.progress = Float(enemy.health)
         attackButton.alpha = 1
         runButton.alpha = 1
         tempWayToCauseEventToFireButton.alpha = 0
+        inKombat = true
     }
     
     @IBAction func attack(sender: AnyObject) {
@@ -115,6 +128,7 @@ class ViewController: UIViewController {
                     print(enemy.health)
                     enemyHealthAmount.text = String(enemy.health)
                     enemyHealthBar.progress = Float(enemy.health)
+                    mainTextView.text = "you dealt " + String(roll2) + " damgae"
                     if enemy.health <= 0
                     {
                         enemyNameLabel.text = " "
@@ -159,6 +173,7 @@ class ViewController: UIViewController {
                     print(enemy.health)
                     healthAmount.text = String(player.health)
                     mcHealthBar.progress = Float(player.health)
+                    mainTextView.text = "you took " + String(roll2) + " damge"
                     if player.health == 0
                     {
                
@@ -182,6 +197,7 @@ class ViewController: UIViewController {
         {
             let dvc = segue.destinationViewController as! ItemViewController
             dvc.player = player
+            dvc.inKombat = inKombat
         }
         else if whichViewSwitch == 2
         {
