@@ -19,6 +19,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var dexButton: UIButton!
     @IBOutlet weak var defButton: UIButton!
     @IBOutlet weak var magicButton: UIButton!
+    @IBOutlet weak var characterHealthLabel: UILabel!
     var player = Player()
 
     override func viewDidLoad() {
@@ -32,6 +33,7 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
+        characterHealthLabel.text = String(player.health)
     }
 
     override func didReceiveMemoryWarning() {

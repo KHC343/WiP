@@ -37,11 +37,14 @@ class ItemViewController: UIViewController {
 
     @IBAction func dietSodaOnPush(sender: AnyObject) {
         player.health = player.healthMax
+        dietSodaAmount.text = String(player.soda - 1)
+        updateItemAmount()
     }
     
     @IBAction func sodaOnPush(sender: AnyObject) {
         player.health = player.healthMax/2
-        
+        sodaAmount.text = String(player.soda - 1)
+        updateItemAmount()
     }
     @IBAction func shockGumOnPush(sender: AnyObject) {
         
