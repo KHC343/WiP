@@ -21,12 +21,9 @@ class Player: NSObject {
     var shockGum = Int()
     var waterBalloon = Int()
     var matches = Int()
-
-
-
+    var name = String()
     
-    
-    convenience init(str: Int, dex: Int, magic: Int, def: Int, health: Int, level: Int, soda: Int, dietSoda: Int, shockGum: Int, waterBalloon: Int, matches: Int, healthMas: Int)
+    convenience init(str: Int, dex: Int, magic: Int, def: Int, health: Int, level: Int, soda: Int, dietSoda: Int, shockGum: Int, waterBalloon: Int, matches: Int, healthMas: Int, name: String)
         
     {
         self.init()
@@ -42,6 +39,7 @@ class Player: NSObject {
         self.shockGum = shockGum
         self.waterBalloon = waterBalloon
         self.matches = matches
+        self.name = name
     }
 
 

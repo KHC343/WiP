@@ -37,13 +37,13 @@ class ItemViewController: UIViewController {
 
     @IBAction func dietSodaOnPush(sender: AnyObject) {
         player.health = player.healthMax
-        dietSodaAmount.text = String(player.soda - 1)
+        player.dietSoda = player.dietSoda - 1
         updateItemAmount()
     }
     
     @IBAction func sodaOnPush(sender: AnyObject) {
         player.health = player.healthMax/2
-        sodaAmount.text = String(player.soda - 1)
+        player.soda = player.soda - 1
         updateItemAmount()
     }
     @IBAction func shockGumOnPush(sender: AnyObject) {
@@ -61,46 +61,59 @@ class ItemViewController: UIViewController {
         if player.dietSoda > 0
         {
             dietSodaButton.alpha = 1
+            dietSodaAmount.text = String(player.dietSoda)
         }
         else
         {
             dietSodaButton.alpha = 0
+            dietSodaAmount.text = String(player.dietSoda)
+
         }
         
         if player.soda > 0
         {
             sodaButton.alpha = 1
+            sodaAmount.text = String(player.soda)
         }
         else
         {
             sodaButton.alpha = 0
+            sodaAmount.text = String(player.soda)
+
         }
         
         if player.shockGum > 0
         {
             shockGumButton.alpha = 1
+            shockGumAmount.text = String(player.shockGum)
         }
         else
         {
             shockGumButton.alpha = 0
+            shockGumAmount.text = String(player.shockGum)
         }
         
         if player.waterBalloon > 0
         {
             waterBalloonButton.alpha = 1
+            waterBalloonAmount.text = String(player.waterBalloon)
         }
         else
         {
             waterBalloonButton.alpha = 0
+            waterBalloonAmount.text = String(player.waterBalloon)
         }
         
         if player.matches > 0
         {
             matchButton.alpha = 1
+            matchAmount.text = String(player.matches)
         }
         else
         {
             matchButton.alpha = 0
+            matchAmount.text = String(player.matches)
+
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
