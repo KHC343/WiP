@@ -48,6 +48,7 @@ class ViewController: UIViewController {
         attackButton?.alpha = 0
         runButton?.alpha = 0
         continueButton?.alpha = 0
+        healthAmount.text = String(player.health)
         let cal = NSCalendar.currentCalendar()
           let comps = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: NSDate())
         comps.hour = 0
@@ -83,10 +84,17 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tempWayToCauseEventToFire(sender: AnyObject) {
-        //let roll1 =  Int(arc4random_uniform(100)) + 1 (later set up percentages we agreed on.)
+        let roll1 =  Int(arc4random_uniform(100)) + 1 
+        
+        if roll1 <= 50{
         enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
         combatScreenSet()
                inKombat = true
+        }
+        else
+        {
+            randomItemEvent()
+        }
     }
     
     @IBAction func attack(sender: AnyObject) {
@@ -125,7 +133,8 @@ class ViewController: UIViewController {
                         enemyHealthBar.alpha = 0
                         attackButton.alpha = 0
                         runButton.alpha = 0
-                        tempWayToCauseEventToFireButton.alpha = 1                        
+                        tempWayToCauseEventToFireButton.alpha = 1
+                        inKombat = false
                     }
                 }
         }
@@ -182,6 +191,7 @@ class ViewController: UIViewController {
     
     func combatScreenSet()
     {
+        
         self.enemyNameLabel.text = String(self.enemy.name)
         self.enemyHealthAmount.text = String(self.enemy.health)
         self.enemyHealthBar.progress = Float(self.enemy.health)
@@ -189,6 +199,22 @@ class ViewController: UIViewController {
         self.attackButton.alpha = 1
         self.runButton.alpha = 1
         self.tempWayToCauseEventToFireButton.alpha = 0
+    }
+    
+    func randomItemEvent()
+    {
+        let roll1 =  Int(arc4random_uniform(2)) + 1
+        if roll1 == 1
+        {
+            player.dietSoda += 1
+            mainTextView.text = "You found a dietsoda"
+        }
+        else if roll1 == 2
+        {
+            player.soda += 1
+            mainTextView.text = "You found a soda"
+
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
