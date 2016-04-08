@@ -14,7 +14,7 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        player = Player(str: 1, dex: 1, magic: 0, def: 1, health: 10, level: 0, soda: 1, dietSoda: 0, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10, name: "timmy")
+        player = Player(str: 1, dex: 1, magic: 0, def: 1, health: 10, level: 0, soda: 0, dietSoda: 1, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10, name: "timmy")
 
     }
 

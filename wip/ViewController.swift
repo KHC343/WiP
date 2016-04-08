@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     var player = Player()
     let activityManager = CMMotionActivityManager()
     var days:[String] = []
-    var stepsTaken = 0
+    var stepsTaken = Int()
     var stepper = CMPedometer()
     var enemy = Enemy()
     let date = NSDate()
@@ -45,7 +45,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
         attackButton?.alpha = 0
         runButton?.alpha = 0
         continueButton?.alpha = 0
@@ -57,29 +56,24 @@ class ViewController: UIViewController {
         let timeZone = NSTimeZone.systemTimeZone()
         cal.timeZone = timeZone
         whichViewSwitch = 0
-        
-        
         stepper.startPedometerUpdatesFromDate(date) { (data, error) -> Void in
             print(data?.numberOfSteps.integerValue)
             if data?.numberOfSteps.intValue > 0
             {
                 self.stepsTaken = (data?.numberOfSteps.integerValue)!
+                
+                self.player.dex + 1
             }
             else
             {
-                self.stepsTaken = 0
+                self.stepsTaken += 1
+                self.player.dex = 2
             }
         }
         
         if self.inKombat == true
         {
-            self.enemyNameLabel.text = String(self.enemy.name)
-            self.enemyHealthAmount.text = String(self.enemy.health)
-            self.enemyHealthBar.progress = Float(self.enemy.health)
-            self.attackButton.alpha = 1
-            self.runButton.alpha = 1
-            self.tempWayToCauseEventToFireButton.alpha = 0
-            self.inKombat = true
+            combatScreenSet()
         }
 
     }
@@ -90,13 +84,9 @@ class ViewController: UIViewController {
 
     @IBAction func tempWayToCauseEventToFire(sender: AnyObject) {
         //let roll1 =  Int(arc4random_uniform(100)) + 1 (later set up percentages we agreed on.)
-        enemyNameLabel.text = String(enemy.name)
-        enemyHealthAmount.text = String(enemy.health)
-        enemyHealthBar.progress = Float(enemy.health)
-        attackButton.alpha = 1
-        runButton.alpha = 1
-        tempWayToCauseEventToFireButton.alpha = 0
-        inKombat = true
+        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+        combatScreenSet()
+               inKombat = true
     }
     
     @IBAction func attack(sender: AnyObject) {
@@ -190,18 +180,30 @@ class ViewController: UIViewController {
         whichViewSwitch = 1
     }
     
+    func combatScreenSet()
+    {
+        self.enemyNameLabel.text = String(self.enemy.name)
+        self.enemyHealthAmount.text = String(self.enemy.health)
+        self.enemyHealthBar.progress = Float(self.enemy.health)
+        self.healthAmount.text = String(self.player.health)
+        self.attackButton.alpha = 1
+        self.runButton.alpha = 1
+        self.tempWayToCauseEventToFireButton.alpha = 0
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if whichViewSwitch == 1
+        if whichViewSwitch == 0
         {
             let dvc = segue.destinationViewController as! StatsViewController
             dvc.player = player
+            dvc.enemy = enemy
             dvc.inKombat = inKombat
         }
         else if whichViewSwitch == 2
         {
             let odvc = segue.destinationViewController as! ItemViewController
             odvc.player = player
+            odvc.enemy = enemy
             odvc.inKombat = inKombat
 
         }
@@ -209,7 +211,6 @@ class ViewController: UIViewController {
     
 
 @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-    
-
     }
+    
 }

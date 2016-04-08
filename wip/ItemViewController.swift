@@ -21,6 +21,8 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var matchButton: UIButton!
     var player = Player()
     var inKombat = Bool()
+    var enemy = Enemy()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dietSodaAmount.text = String(player.dietSoda)
@@ -36,13 +38,13 @@ class ItemViewController: UIViewController {
     }
 
     @IBAction func dietSodaOnPush(sender: AnyObject) {
-        player.health = player.healthMax
+        dietSodaHealthCheck()
         player.dietSoda = player.dietSoda - 1
         updateItemAmount()
     }
     
     @IBAction func sodaOnPush(sender: AnyObject) {
-        player.health = player.healthMax/2
+        player.health = player.healthMax
         player.soda = player.soda - 1
         updateItemAmount()
     }
@@ -116,9 +118,20 @@ class ItemViewController: UIViewController {
 
         }
     }
+    
+    func dietSodaHealthCheck()
+    {
+        player.health = player.health + player.healthMax/2
+        if player.health > player.healthMax
+        {
+            player.health = player.healthMax
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dvc = segue.destinationViewController as! ViewController
         dvc.player = player
+        dvc.enemy = enemy
         dvc.inKombat = inKombat
     }
 

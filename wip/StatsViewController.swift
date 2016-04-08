@@ -22,6 +22,8 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var characterHealthLabel: UILabel!
     var player = Player()
     var inKombat = Bool()
+    var enemy = Enemy()
+    
 
 
     override func viewDidLoad() {
@@ -36,7 +38,6 @@ class StatsViewController: UIViewController {
         defButton.alpha = 0
         magicButton.alpha = 0
         characterHealthLabel.text = String(player.health)
-        print(player.name)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +47,9 @@ class StatsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dvc = segue.destinationViewController as! ViewController
         dvc.player = player
+        dvc.enemy = enemy
+        dvc.inKombat = inKombat
     }
+
 
 }
