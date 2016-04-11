@@ -38,6 +38,10 @@ class StatsViewController: UIViewController {
         defButton.alpha = 0
         magicButton.alpha = 0
         characterHealthLabel.text = String(player.health)
+        if player.perkPoint > 0
+        {
+            lvlUp()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +54,35 @@ class StatsViewController: UIViewController {
         dvc.enemy = enemy
         dvc.inKombat = inKombat
     }
-
+    
+    func lvlUp()
+    {
+        strButton.alpha = 1
+        dexButton.alpha = 1
+        defButton.alpha = 1
+        magicButton.alpha = 0
+        
+    }
+    @IBAction func strIncreaseButton(sender: AnyObject) {
+        player.str += 1
+        strButton.alpha = 0
+        dexButton.alpha = 0
+        defButton.alpha = 0
+        magicButton.alpha = 0
+    }
+    @IBAction func dexIncreaseButton(sender: AnyObject) {
+        player.dex += 1
+        strButton.alpha = 0
+        dexButton.alpha = 0
+        defButton.alpha = 0
+        magicButton.alpha = 0
+    }
+    @IBAction func defIncreaseButton(sender: AnyObject) {
+        player.def += 1
+        strButton.alpha = 0
+        dexButton.alpha = 0
+        defButton.alpha = 0
+        magicButton.alpha = 0
+    }
 
 }
