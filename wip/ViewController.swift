@@ -68,6 +68,7 @@ class ViewController: UIViewController {
             else
             {
                 self.stepsTaken += 1
+                print(self.stepsTaken)
                 self.player.dex = 2
             }
         }
@@ -135,6 +136,12 @@ class ViewController: UIViewController {
                         runButton.alpha = 0
                         tempWayToCauseEventToFireButton.alpha = 1
                         inKombat = false
+                        player.exp += 10
+                        if player.exp == player.levelUp
+                        {
+                            player.perkPoint = 1
+                            player.levelUp += 100
+                        }
                     }
                 }
         }
