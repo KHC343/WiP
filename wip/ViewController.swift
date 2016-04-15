@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var mcHealthBar: UIProgressView!
     @IBOutlet weak var attackButton: UIButton!
     @IBOutlet weak var itemButton: UIButton!
-    @IBOutlet weak var tempWayToCauseEventToFireButton: UIButton!
     @IBOutlet weak var runButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var statsButton: UIButton!
@@ -24,6 +23,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var healthAmount: UILabel!
     @IBOutlet weak var enemyHealthAmount: UILabel!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var straightButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
     var inKombat = Bool()
     var player = Player()
     let activityManager = CMMotionActivityManager()
@@ -34,8 +36,11 @@ class ViewController: UIViewController {
     let date = NSDate()
     let calendar = NSCalendar.currentCalendar()
     var whichViewSwitch = Int()
+    var left = String()
+    var straight = String()
+    var right = String()
+    var whatDifficultly = Int()
     
-
     class Date {
         let calendar = NSCalendar.currentCalendar()
         var day: Int {
@@ -57,6 +62,7 @@ class ViewController: UIViewController {
         let timeZone = NSTimeZone.systemTimeZone()
         cal.timeZone = timeZone
         whichViewSwitch = 0
+        pathSettings()
         stepper.startPedometerUpdatesFromDate(date) { (data, error) -> Void in
             print(data?.numberOfSteps.integerValue)
             if data?.numberOfSteps.intValue > 0
@@ -84,19 +90,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func tempWayToCauseEventToFire(sender: AnyObject) {
-        let roll1 =  Int(arc4random_uniform(100)) + 1 
-        
-        if roll1 <= 50{
-        enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
-        combatScreenSet()
-               inKombat = true
-        }
-        else
-        {
-            randomItemEvent()
-        }
-    }
     
     @IBAction func attack(sender: AnyObject) {
         let roll1 = Int(arc4random_uniform(10)) + 1
@@ -134,9 +127,13 @@ class ViewController: UIViewController {
                         enemyHealthBar.alpha = 0
                         attackButton.alpha = 0
                         runButton.alpha = 0
-                        tempWayToCauseEventToFireButton.alpha = 1
                         inKombat = false
                         player.exp += 10
+                        straightButton.alpha = 1
+                        rightButton.alpha = 1
+                        leftButton.alpha = 1
+                        pathSettings()
+                       
                         if player.exp == player.levelUp
                         {
                             player.perkPoint = 1
@@ -205,7 +202,9 @@ class ViewController: UIViewController {
         self.healthAmount.text = String(self.player.health)
         self.attackButton.alpha = 1
         self.runButton.alpha = 1
-        self.tempWayToCauseEventToFireButton.alpha = 0
+        self.rightButton.alpha = 0
+        self.leftButton.alpha = 0
+        self.straightButton.alpha = 0
     }
     
     func randomItemEvent()
@@ -222,6 +221,148 @@ class ViewController: UIViewController {
             mainTextView.text = "You found a soda"
 
         }
+    }
+    
+    @IBAction func leftButtonOnPush(sender: AnyObject) {
+        if right == "low"
+        {
+            lowDif()
+        }
+        else if right == "med"
+        {
+            medDif()
+        }
+        else
+        {
+            highDif()
+        }
+
+    }
+    
+    @IBAction func straightButtonOnPush(sender: AnyObject) {
+        if right == "low"
+        {
+            lowDif()
+        }
+        else if right == "med"
+        {
+            medDif()
+        }
+        else
+        {
+            highDif()
+        }
+
+    }
+    
+    @IBAction func rightButtonOnPush(sender: AnyObject) {
+        if right == "low"
+        {
+            lowDif()
+        }
+        else if right == "med"
+        {
+            medDif()
+        }
+        else
+        {
+            highDif()
+        }
+
+    }
+    
+    func lowDif()
+    {
+        let roll1 =  Int(arc4random_uniform(100)) + 1
+        
+        if roll1 <= 30{
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+            combatScreenSet()
+            inKombat = true
+        }
+        else
+        {
+            randomItemEvent()
+        }
+
+    }
+    
+    func medDif()
+    {
+        let roll1 =  Int(arc4random_uniform(100)) + 1
+        
+        if roll1 <= 50{
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+            combatScreenSet()
+            inKombat = true
+        }
+        else
+        {
+            randomItemEvent()
+        }
+
+    }
+    
+    func highDif()
+    {
+        let roll1 =  Int(arc4random_uniform(100)) + 1
+        
+        if roll1 <= 80{
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+            combatScreenSet()
+            inKombat = true
+        }
+        else
+        {
+            randomItemEvent()
+        }
+
+    }
+    
+    func pathSettings()
+    {
+        let roll1 = Int(arc4random_uniform(3)) + 1
+        if roll1 == 1
+        {
+            left = "low"
+        }
+        else if roll1 == 2
+        {
+            left = "med"
+        }
+        else
+        {
+            left = "high"
+        }
+        
+        let roll3 = Int(arc4random_uniform(3)) + 1
+        if roll3 == 1
+        {
+            straight = "low"
+        }
+        else if roll1 == 2
+        {
+            straight = "med"
+        }
+        else
+        {
+            straight = "high"
+        }
+        
+        let roll2 = Int(arc4random_uniform(3)) + 1
+        if roll2 == 1
+        {
+            right = "low"
+        }
+        else if roll2 == 2
+        {
+            right = "med"
+        }
+        else
+        {
+            right = "high"
+        }
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -241,9 +382,4 @@ class ViewController: UIViewController {
 
         }
     }
-    
-
-@IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-    }
-    
 }

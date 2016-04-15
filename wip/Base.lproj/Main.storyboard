@@ -110,13 +110,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqB-2Q-Key">
-                                <rect key="frame" x="125" y="431" width="60" height="30"/>
-                                <state key="normal" title="Temp go"/>
-                                <connections>
-                                    <action selector="tempWayToCauseEventToFire:" destination="gz5-gn-2r4" eventType="touchUpInside" id="Pjv-4T-UHG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Y-y7-E9b">
                                 <rect key="frame" x="258" y="365" width="31" height="30"/>
                                 <state key="normal" title="Item"/>
@@ -131,6 +124,27 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDr-fN-aEh">
+                                <rect key="frame" x="33" y="410" width="30" height="30"/>
+                                <state key="normal" title="left"/>
+                                <connections>
+                                    <action selector="leftButtonOnPush:" destination="gz5-gn-2r4" eventType="touchUpInside" id="uVz-dE-ZPH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdC-3S-sVb">
+                                <rect key="frame" x="129" y="416" width="53" height="30"/>
+                                <state key="normal" title="straight"/>
+                                <connections>
+                                    <action selector="straightButtonOnPush:" destination="gz5-gn-2r4" eventType="touchUpInside" id="RES-uS-mJT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chT-H6-ALh">
+                                <rect key="frame" x="257" y="410" width="32" height="30"/>
+                                <state key="normal" title="right"/>
+                                <connections>
+                                    <action selector="rightButtonOnPush:" destination="gz5-gn-2r4" eventType="touchUpInside" id="U4A-lU-vUC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -143,13 +157,15 @@
                         <outlet property="enemyNameLabel" destination="vnG-Xk-vxs" id="Ahu-Rl-GbP"/>
                         <outlet property="healthAmount" destination="RMY-GG-VEV" id="efk-pD-Fu8"/>
                         <outlet property="itemButton" destination="i4Y-y7-E9b" id="mKx-Kw-qm8"/>
+                        <outlet property="leftButton" destination="IDr-fN-aEh" id="JmV-qF-CyY"/>
                         <outlet property="levelLabel" destination="ld2-xl-hW8" id="BBt-2i-emi"/>
                         <outlet property="mainImage" destination="sn3-mm-Rkg" id="d7U-mu-NNS"/>
                         <outlet property="mainTextView" destination="euE-K5-JH0" id="tof-TS-KV4"/>
                         <outlet property="mcHealthBar" destination="cwI-ns-6vb" id="Eon-cb-rbN"/>
+                        <outlet property="rightButton" destination="chT-H6-ALh" id="siz-F8-yk0"/>
                         <outlet property="runButton" destination="fyr-FT-bQ7" id="Rtp-Mj-Mpa"/>
                         <outlet property="statsButton" destination="veU-QT-LQ9" id="hcW-ZW-3R9"/>
-                        <outlet property="tempWayToCauseEventToFireButton" destination="rqB-2Q-Key" id="DCD-ii-wtQ"/>
+                        <outlet property="straightButton" destination="UdC-3S-sVb" id="lpY-Xf-aNs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgK-o4-uxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
