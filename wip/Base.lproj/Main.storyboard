@@ -432,11 +432,18 @@
                                     <segue destination="gz5-gn-2r4" kind="showDetail" id="lYa-uF-soP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy9-5h-0ng">
+                                <rect key="frame" x="296" y="122" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="amountOfExp" destination="jy9-5h-0ng" id="VWc-XQ-7a7"/>
                         <outlet property="characterHealthLabel" destination="Wvg-tF-fGa" id="xJN-M8-aDu"/>
                         <outlet property="defAmount" destination="Dza-PF-gQj" id="Nd9-f6-3mp"/>
                         <outlet property="defButton" destination="57p-De-BLD" id="Oca-Qo-e9h"/>

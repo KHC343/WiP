@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class StartViewController: UIViewController {
     
     var player = Player()

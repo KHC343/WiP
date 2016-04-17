@@ -20,6 +20,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var defButton: UIButton!
     @IBOutlet weak var magicButton: UIButton!
     @IBOutlet weak var characterHealthLabel: UILabel!
+    @IBOutlet weak var amountOfExp: UILabel!
     var player = Player()
     var inKombat = Bool()
     var enemy = Enemy()
@@ -37,6 +38,7 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
+        amountOfExp.text = String(player.exp)
         characterHealthLabel.text = String(player.health)
         if player.perkPoint > 0
         {

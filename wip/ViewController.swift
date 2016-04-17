@@ -276,7 +276,7 @@ class ViewController: UIViewController {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
         if roll1 <= 30{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Weak Dinkuh", health: 5)
             combatScreenSet()
             inKombat = true
         }
@@ -292,7 +292,7 @@ class ViewController: UIViewController {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
         if roll1 <= 50{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 7)
             combatScreenSet()
             inKombat = true
         }
@@ -308,7 +308,7 @@ class ViewController: UIViewController {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
         if roll1 <= 80{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 10)
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Angry Dinkuh", health: 10)
             combatScreenSet()
             inKombat = true
         }
