@@ -71,6 +71,7 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
+        player.perkPoint - 1
     }
     @IBAction func dexIncreaseButton(sender: AnyObject) {
         player.dex += 1
@@ -78,6 +79,8 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
+        player.perkPoint - 1
+
     }
     @IBAction func defIncreaseButton(sender: AnyObject) {
         player.def += 1
@@ -85,6 +88,8 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
+        player.perkPoint - 1
+
     }
 
 }

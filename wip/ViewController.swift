@@ -90,7 +90,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    
     @IBAction func attack(sender: AnyObject) {
         let roll1 = Int(arc4random_uniform(10)) + 1
         let hitChance = roll1 + player.dex
@@ -382,4 +381,5 @@ class ViewController: UIViewController {
 
         }
     }
+ 
 }
