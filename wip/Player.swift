@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Player: NSObject {
+class Player: NSObject, NSCoding {
     var str = Int()
     var dex = Int()
     var magic = Int()
@@ -26,7 +26,27 @@ class Player: NSObject {
     var levelUp = Int()
     var perkPoint = Int()
     
-    convenience init(str: Int, dex: Int, magic: Int, def: Int, health: Int, level: Int, soda: Int, dietSoda: Int, shockGum: Int, waterBalloon: Int, matches: Int, healthMas: Int, name: String, exp: Int, levelUp: Int, perkPoint: Int)
+    
+    struct PropertyKey {
+        static var strKey = "str"
+        static var dexKey = "dex"
+        static var  magicKey = "magic"
+        static var  defKey = "def"
+        static var  levelKey = "level"
+        static var  healthKey = "health"
+        static var  healthMaxKey = "healthMax"
+        static var  sodaKey = "soda"
+        static var  dietSodaKey = "dietSoda"
+        static var  shockGumKey = "shockGum"
+        static var  waterBalloonKey = "waterBalloon"
+        static var  matchesKey = "matches"
+        static var  nameKey = "name"
+        static var  expKey = "exp"
+        static var  levelUpKey = "levelUp"
+        static var  perkPointKey = "prekPoint"
+    }
+    
+        convenience init(str: Int, dex: Int, magic: Int, def: Int, health: Int, level: Int, soda: Int, dietSoda: Int, shockGum: Int, waterBalloon: Int, matches: Int, healthMas: Int, name: String, exp: Int, levelUp: Int, perkPoint: Int)
         
     {
         self.init()
@@ -49,4 +69,31 @@ class Player: NSObject {
     }
 
 
+
+    // MARK: NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        //This should load in all of the player variables
+        aCoder.encodeInteger(str, forKey: PropertyKey.strKey)
+        aCoder.encodeInteger(dex, forKey: PropertyKey.dexKey)
+        aCoder.encodeInteger(magic, forKey: PropertyKey.magicKey)
+        aCoder.encodeInteger(def, forKey: PropertyKey.defKey)
+        aCoder.encodeInteger(level, forKey: PropertyKey.levelKey)
+        aCoder.encodeInteger(health, forKey: PropertyKey.healthKey)
+        aCoder.encodeInteger(healthMax, forKey: PropertyKey.healthMaxKey)
+        aCoder.encodeInteger(soda, forKey: PropertyKey.sodaKey)
+        aCoder.encodeInteger(dietSoda, forKey: PropertyKey.dietSodaKey)
+        aCoder.encodeInteger(shockGum, forKey: PropertyKey.shockGumKey)
+        aCoder.encodeInteger(waterBalloon, forKey: PropertyKey.waterBalloonKey)
+        aCoder.encodeInteger(matches, forKey: PropertyKey.matchesKey)
+        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+        aCoder.encodeInteger(exp, forKey: PropertyKey.expKey)
+        aCoder.encodeInteger(levelUp, forKey: PropertyKey.levelUpKey)
+        aCoder.encodeInteger(perkPoint, forKey: PropertyKey.perkPointKey)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        self.init()
+        str = aDecoder.decodeObjectForKey(PropertyKey.strKey) as! Int
+        dex = aDecoder.decodeObjectForKey(PropertyKey.dexKey) as! Int
+    }
 }
