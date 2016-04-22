@@ -50,12 +50,7 @@ class StatsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dvc = segue.destinationViewController as! ViewController
-        dvc.player = player
-        dvc.enemy = enemy
-        dvc.inKombat = inKombat
-    }
+    
     
     func lvlUp()
     {
@@ -64,6 +59,7 @@ class StatsViewController: UIViewController {
         defButton.alpha = 1
         magicButton.alpha = 0
         
+        
     }
     @IBAction func strIncreaseButton(sender: AnyObject) {
         player.str += 1
@@ -71,7 +67,11 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
-        player.perkPoint - 1
+        player.perkPoint = 0
+        strAmount.text = String(player.str)
+        dexAmount.text = String(player.dex)
+        defAmount.text = String(player.def)
+        magicAmount.text = String(player.magic)
     }
     @IBAction func dexIncreaseButton(sender: AnyObject) {
         player.dex += 1
@@ -79,7 +79,11 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
-        player.perkPoint - 1
+        player.perkPoint = 0
+        strAmount.text = String(player.str)
+        dexAmount.text = String(player.dex)
+        defAmount.text = String(player.def)
+        magicAmount.text = String(player.magic)
 
     }
     @IBAction func defIncreaseButton(sender: AnyObject) {
@@ -88,8 +92,18 @@ class StatsViewController: UIViewController {
         dexButton.alpha = 0
         defButton.alpha = 0
         magicButton.alpha = 0
-        player.perkPoint - 1
+        player.perkPoint = 0
+        strAmount.text = String(player.str)
+        dexAmount.text = String(player.dex)
+        defAmount.text = String(player.def)
+        magicAmount.text = String(player.magic)
 
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dvc = segue.destinationViewController as! ViewController
+        dvc.player = player
+        dvc.enemy = enemy
+        dvc.inKombat = inKombat
+    }
 }

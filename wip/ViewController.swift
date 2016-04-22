@@ -103,7 +103,7 @@ class ViewController: UIViewController {
             
             if dodgeChance >= 5
             {
-                var roll2 = Int(arc4random_uniform(3)) + player.str % 2
+                var roll2 = Int(arc4random_uniform(3)) + player.str / 2
                 print(roll2)
                 roll2 = roll2 - enemy.def
                 print("withdodge")
