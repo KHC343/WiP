@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import CoreMotion
 
 class ViewController: UIViewController {
@@ -40,6 +41,9 @@ class ViewController: UIViewController {
     var straight = String()
     var right = String()
     var whatDifficultly = Int()
+    var preference = NSUserDefaults()
+    var loadOrSave = Int()
+    var savedPlayer : Player = Player()
     
     class Date {
         let calendar = NSCalendar.currentCalendar()
@@ -50,6 +54,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        savedPlayer = preference.objectForKey("playerKey")! as! Player
+        if loadOrSave == 1
+        {
+            
+        }
+        else if loadOrSave == 2
+        {
+            player = Player(savedPlayer: preference.objectForKey("playerKey") as! Player)
+        }
         attackButton?.alpha = 0
         runButton?.alpha = 0
         continueButton?.alpha = 0

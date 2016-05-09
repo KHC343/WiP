@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class StatsViewController: UIViewController {
     @IBOutlet weak var strAmount: UILabel!
@@ -24,11 +25,12 @@ class StatsViewController: UIViewController {
     var player = Player()
     var inKombat = Bool()
     var enemy = Enemy()
-    
+    let prefs = NSUserDefaults.standardUserDefaults()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         strAmount.text = String(player.str)
         dexAmount.text = String(player.dex)
         defAmount.text = String(player.def)
@@ -105,5 +107,11 @@ class StatsViewController: UIViewController {
         dvc.player = player
         dvc.enemy = enemy
         dvc.inKombat = inKombat
+        dvc.preference = prefs
+    }
+    @IBAction func saveButtonTapped(sender: UIButton)
+    {
+        
+        prefs.setObject(player, forKey: "playerKey")
     }
 }

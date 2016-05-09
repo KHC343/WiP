@@ -10,6 +10,7 @@ import UIKit
 class StartViewController: UIViewController {
     
     var player = Player()
+    var loadOrSave = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +20,18 @@ class StartViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    @IBAction func newGameButton(sender: AnyObject) {
+        loadOrSave = 1
+
+    }
+    @IBAction func Load(sender: AnyObject) {
+        loadOrSave = 2
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dvc = segue.destinationViewController as! ViewController
         dvc.player = player
+        dvc.loadOrSave = loadOrSave
     }
 
 }
