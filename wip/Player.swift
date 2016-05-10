@@ -27,17 +27,14 @@ class Player: NSObject{
     var levelUp = Int()
     var perkPoint = Int()
     
-    override convenience init() {
-        self.init()
+    override init()
+    {
+        
     }
-    
-    
-    
-    
-         convenience init(str: Int, dex: Int, magic: Int, def: Int, health: Int, level: Int, soda: Int, dietSoda: Int, shockGum: Int, waterBalloon: Int, matches: Int, healthMas: Int, name: String, exp: Int, levelUp: Int, perkPoint: Int)
+
+          init(str: Int, dex: Int, magic: Int, def: Int, health: Int, level: Int, soda: Int, dietSoda: Int, shockGum: Int, waterBalloon: Int, matches: Int, healthMas: Int, name: String, exp: Int, levelUp: Int, perkPoint: Int)
         
     {
-        self.init()
         self.str = str
         self.dex = dex
         self.magic = magic

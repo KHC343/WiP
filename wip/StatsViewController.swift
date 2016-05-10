@@ -65,11 +65,14 @@ class StatsViewController: UIViewController {
     }
     @IBAction func strIncreaseButton(sender: AnyObject) {
         player.str += 1
-        strButton.alpha = 0
-        dexButton.alpha = 0
-        defButton.alpha = 0
-        magicButton.alpha = 0
-        player.perkPoint = 0
+        if player.perkPoint == 0
+        {
+            strButton.alpha = 0
+            dexButton.alpha = 0
+            defButton.alpha = 0
+            magicButton.alpha = 0
+        }
+        player.perkPoint -= 1
         strAmount.text = String(player.str)
         dexAmount.text = String(player.dex)
         defAmount.text = String(player.def)
@@ -77,24 +80,32 @@ class StatsViewController: UIViewController {
     }
     @IBAction func dexIncreaseButton(sender: AnyObject) {
         player.dex += 1
-        strButton.alpha = 0
-        dexButton.alpha = 0
-        defButton.alpha = 0
-        magicButton.alpha = 0
-        player.perkPoint = 0
+        if player.perkPoint == 0
+        {
+            strButton.alpha = 0
+            dexButton.alpha = 0
+            defButton.alpha = 0
+            magicButton.alpha = 0
+        }
+        player.perkPoint -= 0
         strAmount.text = String(player.str)
         dexAmount.text = String(player.dex)
         defAmount.text = String(player.def)
         magicAmount.text = String(player.magic)
 
+
     }
     @IBAction func defIncreaseButton(sender: AnyObject) {
         player.def += 1
-        strButton.alpha = 0
-        dexButton.alpha = 0
-        defButton.alpha = 0
-        magicButton.alpha = 0
-        player.perkPoint = 0
+        if player.perkPoint == 0
+        {
+            strButton.alpha = 0
+            dexButton.alpha = 0
+            defButton.alpha = 0
+            magicButton.alpha = 0
+        }
+        
+        player.perkPoint -= 0
         strAmount.text = String(player.str)
         dexAmount.text = String(player.dex)
         defAmount.text = String(player.def)
