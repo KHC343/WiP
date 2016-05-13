@@ -22,6 +22,7 @@ class ItemViewController: UIViewController {
     var player = Player()
     var inKombat = Bool()
     var enemy = Enemy()
+    var whatLevel = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +134,8 @@ class ItemViewController: UIViewController {
         dvc.player = player
         dvc.enemy = enemy
         dvc.inKombat = inKombat
+        dvc.whatLevel = whatLevel
+
     }
 
     }

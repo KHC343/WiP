@@ -27,11 +27,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var straightButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var whatFloor: UILabel!
+    var whatLevel = Int()
+    var enemiesDefeated = Int ()
     var inKombat = Bool()
     var player = Player()
     let activityManager = CMMotionActivityManager()
-    var days:[String] = []
-    var stepsTaken = Int()
     var stepper = CMPedometer()
     var enemy = Enemy()
     let date = NSDate()
@@ -53,11 +54,12 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        print(NSThread.callStackSymbols())
+
         super.viewDidLoad()
-        savedPlayer = preference.objectForKey("playerKey")! as! Player
         if loadOrSave == 1
         {
-            
+            whatLevel == 1
         }
         else if loadOrSave == 2
         {
@@ -80,14 +82,10 @@ class ViewController: UIViewController {
             print(data?.numberOfSteps.integerValue)
             if data?.numberOfSteps.intValue > 0
             {
-                self.stepsTaken = (data?.numberOfSteps.integerValue)!
-                
                 self.player.dex + 1
             }
             else
             {
-                self.stepsTaken += 1
-                print(self.stepsTaken)
                 self.player.dex = 2
             }
         }
@@ -123,7 +121,7 @@ class ViewController: UIViewController {
                 print(roll2)
                 if roll2 <= 0
                 {
-                    
+                    mainTextView.text = "They managed to dodge your attack."
                 }
                 else
                 {
@@ -131,7 +129,7 @@ class ViewController: UIViewController {
                     print(enemy.health)
                     enemyHealthAmount.text = String(enemy.health)
                     enemyHealthBar.progress = Float(enemy.health)
-                    mainTextView.text = "you dealt " + String(roll2) + " damgae"
+                    mainTextView.text = "they managed to avoid the majority of your attack you dealt " + String(roll2) + " damage"
                     if enemy.health <= 0
                     {
                         enemyNameLabel.text = " "
@@ -145,6 +143,7 @@ class ViewController: UIViewController {
                         rightButton.alpha = 1
                         leftButton.alpha = 1
                         pathSettings()
+                        enemiesDefeated += 1
                        
                         if player.exp == player.levelUp
                         {
@@ -154,6 +153,16 @@ class ViewController: UIViewController {
                     }
                 }
         }
+            else
+            {
+                let roll2 = Int(arc4random_uniform(3)) + player.str / 2
+                enemy.health = enemy.health - roll2
+                print(enemy.health)
+                enemyHealthAmount.text = String(enemy.health)
+                enemyHealthBar.progress = Float(enemy.health)
+                mainTextView.text = "dead on hit you dealt " + String(roll2) + " damage"
+
+            }
         }
        enemyTurn()
     }
@@ -179,7 +188,8 @@ class ViewController: UIViewController {
                 print(roll2)
                 if roll2 <= 0
                 {
-                    
+                    mainTextView.text = "you managed to dodge their attack."
+
                 }
                 else
                 {
@@ -187,12 +197,27 @@ class ViewController: UIViewController {
                     print(enemy.health)
                     healthAmount.text = String(player.health)
                     mcHealthBar.progress = Float(player.health)
-                    mainTextView.text = "you took " + String(roll2) + " damge"
+                    mainTextView.text = "you managed to avoid most of the damage you took " + String(roll2) + " damage"
                     if player.health == 0
                     {
-               
+                        mainTextView.text = "GAME OVER"
+                        healthAmount.alpha = 0
+                        mcHealthBar.alpha = 0
+                        runButton.alpha = 0
+                        attackButton.alpha = 0
+                        itemButton.alpha = 0
+                        statsButton.alpha = 0
                     }
                 }
+            }
+            else
+            {
+                let roll2 = Int(arc4random_uniform(3)) + enemy.dmg / 2
+                player.health = player.health - roll2
+                print(player.health)
+                healthAmount.text = String(player.health)
+                mcHealthBar.progress = Float(player.health)
+                mainTextView.text = "dead on hit they dealt " + String(roll2) + " damage"
             }
         }
     }
@@ -287,10 +312,44 @@ class ViewController: UIViewController {
     {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
-        if roll1 <= 30{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Weak Dinkuh", health: 5)
+        if roll1 <= 30
+        {
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "An irregular Ant", health: 5)
             combatScreenSet()
             inKombat = true
+            if whatLevel > 1
+            {
+            let roll1 =  Int(arc4random_uniform(4)) + 1
+                if roll1 == 1
+                {
+                    enemy.dmg += 2
+                    enemy.health *= whatLevel
+                }
+                if roll1 == 2
+                {
+                    enemy.dex += 2
+                    enemy.health *= whatLevel
+                }
+                if roll1 == 3
+                {
+                    enemy.def += 2
+                    enemy.health *= whatLevel
+                }
+            }
+        }
+        else if roll1 >= 40 && roll1 <= 50
+        {
+            if enemiesDefeated >= 3
+            {
+                whatLevel += 1
+                whatFloor.text = String(whatLevel)
+                enemiesDefeated = 0
+            }
+            else
+            {
+                lowDif()
+            }
+
         }
         else
         {
@@ -304,9 +363,42 @@ class ViewController: UIViewController {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
         if roll1 <= 50{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Dinkuh", health: 7)
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "A mildly intimidating Ant", health: 7)
             combatScreenSet()
             inKombat = true
+            if whatLevel > 1
+            {
+                let roll1 =  Int(arc4random_uniform(4)) + 1
+                if roll1 == 1
+                {
+                    enemy.dmg += 2
+                    enemy.health *= whatLevel
+                }
+                if roll1 == 2
+                {
+                    enemy.dex += 2
+                    enemy.health *= whatLevel
+                }
+                if roll1 == 3
+                {
+                    enemy.def += 2
+                    enemy.health *= whatLevel
+                }
+            }
+            else if roll1 >= 60 && roll1 <= 70
+            {
+                if enemiesDefeated >= 3
+                {
+                    whatLevel += 1
+                    whatFloor.text = String(whatLevel)
+                    enemiesDefeated = 0
+                }
+                else
+                {
+                    medDif()
+                }
+            }
+
         }
         else
         {
@@ -319,10 +411,45 @@ class ViewController: UIViewController {
     {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
-        if roll1 <= 80{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "Angry Dinkuh", health: 10)
+        if roll1 <= 70{
+            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "A disturbingly aggresive Ant", health: 10)
             combatScreenSet()
             inKombat = true
+            if whatLevel > 1
+            {
+                let roll1 =  Int(arc4random_uniform(4)) + 1
+                if roll1 == 1
+                {
+                    enemy.dmg += whatLevel
+                    enemy.health *= whatLevel
+                }
+                if roll1 == 2
+                {
+                    enemy.dex += whatLevel
+                    enemy.health *= whatLevel
+                }
+                if roll1 == 3
+                {
+                    enemy.def += whatLevel
+                    enemy.health *= whatLevel
+                }
+            }
+
+        }
+        else if roll1 >= 80 && roll1 <= 90
+        {
+            if enemiesDefeated >= 3
+            {
+            whatLevel += 1
+            whatFloor.text = String(whatLevel)
+                enemiesDefeated = 0
+            }
+            else
+            {
+                highDif()
+            }
+
+            
         }
         else
         {
@@ -384,6 +511,7 @@ class ViewController: UIViewController {
             dvc.player = player
             dvc.enemy = enemy
             dvc.inKombat = inKombat
+            dvc.whatLevel = whatLevel
         }
         else if whichViewSwitch == 2
         {
@@ -391,6 +519,8 @@ class ViewController: UIViewController {
             odvc.player = player
             odvc.enemy = enemy
             odvc.inKombat = inKombat
+            odvc.whatLevel = whatLevel
+
 
         }
     }

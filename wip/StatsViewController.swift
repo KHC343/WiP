@@ -23,6 +23,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var characterHealthLabel: UILabel!
     @IBOutlet weak var level: UILabel!
     var player = Player()
+    var whatLevel = Int()
     var inKombat = Bool()
     var enemy = Enemy()
     let prefs = NSUserDefaults.standardUserDefaults()
@@ -30,7 +31,6 @@ class StatsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         strAmount.text = String(player.str)
         dexAmount.text = String(player.dex)
         defAmount.text = String(player.def)
@@ -116,6 +116,7 @@ class StatsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dvc = segue.destinationViewController as! ViewController
         dvc.player = player
+        dvc.whatLevel = whatLevel
         dvc.enemy = enemy
         dvc.inKombat = inKombat
         dvc.preference = prefs
