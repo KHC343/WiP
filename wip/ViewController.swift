@@ -63,7 +63,23 @@ class ViewController: UIViewController {
         }
         else if loadOrSave == 2
         {
-            player = Player(savedPlayer: preference.objectForKey("playerKey") as! Player)
+            player.str = Int(preference.objectForKey("strKey")! as! NSNumber)
+            player.dex = Int(preference.objectForKey("dexKey")! as! NSNumber)
+            player.def = Int(preference.objectForKey("defKey")! as! NSNumber)
+            player.magic = Int(preference.objectForKey("magicKey")! as! NSNumber)
+            player.level = Int(preference.objectForKey("levelKey")! as! NSNumber)
+            player.levelUp = Int(preference.objectForKey("levelUpKey")! as! NSNumber)
+            player.exp = Int(preference.objectForKey("expKey")! as! NSNumber)
+            player.health = Int(preference.objectForKey("healthKey")! as! NSNumber)
+            player.healthMax = Int(preference.objectForKey("healthMaxKey")! as! NSNumber)
+            player.soda = Int(preference.objectForKey("sodaKey")! as! NSNumber)
+            player.dietSoda = Int(preference.objectForKey("dietSodaKey")! as! NSNumber)
+            player.shockGum = Int(preference.objectForKey("shockGumKey")! as! NSNumber)
+            player.waterBalloon = Int(preference.objectForKey("wateBballoon")! as! NSNumber)
+            player.matches = Int(preference.objectForKey("matchesKey")! as! NSNumber)
+            player.name = String(preference.objectForKey("nameKey")! as! NSNumber)
+            player.perkPoint = Int(preference.objectForKey("perkPointKey")! as! NSNumber)
+            whatLevel = Int(preference.objectForKey("whatLevelKey")! as! NSNumber)
         }
         attackButton?.alpha = 0
         runButton?.alpha = 0

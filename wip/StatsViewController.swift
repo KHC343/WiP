@@ -124,6 +124,24 @@ class StatsViewController: UIViewController {
     @IBAction func saveButtonTapped(sender: UIButton)
     {
         
-        prefs.setObject(player, forKey: "playerKey")
+        prefs.setValue(player.str, forKey: "strKey")
+        prefs.setValue(player.dex, forKey: "dexKey")
+        prefs.setValue(player.def, forKey: "defKey")
+        prefs.setValue(player.magic, forKey: "magicKey")
+        prefs.setValue(player.level, forKey: "levelKey")
+        prefs.setValue(player.levelUp, forKey: "levelUpKey")
+        prefs.setValue(player.exp, forKey: "expKey")
+        prefs.setValue(player.health, forKey: "healthKey")
+        prefs.setValue(player.healthMax, forKey: "healthMaxKey")
+        prefs.setValue(player.soda, forKey: "sodaKey")
+        prefs.setValue(player.dietSoda, forKey: "dietSodaKey")
+        prefs.setValue(player.shockGum, forKey: "shockGumKey")
+        prefs.setValue(player.waterBalloon, forKey: "waterBalloonKey")
+        prefs.setValue(player.matches, forKey: "matchesKey")
+        prefs.setValue(player.name
+            , forKey: "nameKey")
+        prefs.setValue(player.perkPoint, forKey: "perkPointKey")
+        prefs.setValue(whatLevel, forKey: "whatLevelKey")
+        print("I really wish that my dex was high than " + String(prefs.objectForKey("dexKey")!))
     }
 }
