@@ -23,7 +23,10 @@ class ItemViewController: UIViewController {
     var inKombat = Bool()
     var enemy = Enemy()
     var whatLevel = Int()
-
+    var whatMagicType = Int()
+    var usedMagic = Bool()
+    var usedItem = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dietSodaAmount.text = String(player.dietSoda)
@@ -50,13 +53,24 @@ class ItemViewController: UIViewController {
         updateItemAmount()
     }
     @IBAction func shockGumOnPush(sender: AnyObject) {
+        usedMagic = true
+        whatMagicType = 1
+        player.matches = player.matches - 1
+        updateItemAmount()
+
         
     }
     @IBAction func waterBalloonOnPush(sender: AnyObject) {
-        
+        usedMagic = true
+        whatMagicType = 2
+        player.waterBalloon = player.waterBalloon - 1
+        updateItemAmount()
     }
     @IBAction func mathOnPush(sender: AnyObject) {
-        
+        usedMagic = true
+        whatMagicType = 3
+        player.waterBalloon = player.waterBalloon - 1
+        updateItemAmount()
     }
     
     func updateItemAmount()
@@ -87,8 +101,17 @@ class ItemViewController: UIViewController {
         
         if player.shockGum > 0
         {
-            shockGumButton.alpha = 1
-            shockGumAmount.text = String(player.shockGum)
+            if inKombat == true
+            {
+                shockGumButton.alpha = 1
+                shockGumAmount.text = String(player.shockGum)
+            }
+            else
+            {
+                shockGumButton.alpha = 0
+                shockGumAmount.text = String(player.shockGum)
+            }
+
         }
         else
         {
@@ -98,19 +121,39 @@ class ItemViewController: UIViewController {
         
         if player.waterBalloon > 0
         {
-            waterBalloonButton.alpha = 1
-            waterBalloonAmount.text = String(player.waterBalloon)
+            if inKombat == true
+            {
+
+                waterBalloonButton.alpha = 1
+                waterBalloonAmount.text = String(player.waterBalloon)
+            }
+            else
+            {
+                shockGumButton.alpha = 0
+                shockGumAmount.text = String(player.shockGum)
+            }
+
         }
         else
         {
+            
             waterBalloonButton.alpha = 0
             waterBalloonAmount.text = String(player.waterBalloon)
         }
         
         if player.matches > 0
         {
-            matchButton.alpha = 1
-            matchAmount.text = String(player.matches)
+            if inKombat == true
+            {
+                matchButton.alpha = 1
+                matchAmount.text = String(player.matches)
+            }
+            else
+            {
+                shockGumButton.alpha = 0
+                shockGumAmount.text = String(player.shockGum)
+            }
+
         }
         else
         {
@@ -135,6 +178,9 @@ class ItemViewController: UIViewController {
         dvc.enemy = enemy
         dvc.inKombat = inKombat
         dvc.whatLevel = whatLevel
+        dvc.whatMagicType = whatMagicType
+        dvc.usedMagic = usedMagic
+        dvc.usedItem = usedMagic
 
     }
 

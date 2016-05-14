@@ -45,6 +45,9 @@ class ViewController: UIViewController {
     var preference = NSUserDefaults()
     var loadOrSave = Int()
     var savedPlayer : Player = Player()
+    var whatMagicType = Int()
+    var usedMagic = Bool()
+    var usedItem = Bool()
     
     class Date {
         let calendar = NSCalendar.currentCalendar()
@@ -110,7 +113,14 @@ class ViewController: UIViewController {
         {
             combatScreenSet()
         }
-
+        if self.usedItem == true
+        {
+            enemyTurn()
+        }
+        if self.usedMagic == true
+        {
+            magicAttack()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -330,7 +340,7 @@ class ViewController: UIViewController {
         
         if roll1 <= 30
         {
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "An irregular Ant", health: 5)
+            enemy = Enemy(dmg: 1, dex: 1, weakTo:  3, mdmg: 0, def: 1, name: "An irregular Ant", health: 5)
             combatScreenSet()
             inKombat = true
             if whatLevel > 1
@@ -379,7 +389,7 @@ class ViewController: UIViewController {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
         if roll1 <= 50{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "A mildly intimidating Ant", health: 7)
+            enemy = Enemy(dmg: 1, dex: 1, weakTo: 3, mdmg: 0, def: 1, name: "A mildly intimidating Ant", health: 7)
             combatScreenSet()
             inKombat = true
             if whatLevel > 1
@@ -423,12 +433,86 @@ class ViewController: UIViewController {
 
     }
     
+    func magicAttack()
+    {
+        if enemy.weakTo == whatMagicType{
+            enemy.health = enemy.health - 6 * player.magic
+        
+        
+        print(enemy.health)
+        enemyHealthAmount.text = String(enemy.health)
+        enemyHealthBar.progress = Float(enemy.health)
+        mainTextView.text = "you dealt " + String(6 * player.magic) + " damage"
+        if enemy.health <= 0
+        {
+            enemyNameLabel.text = " "
+            enemyHealthAmount.text = " "
+            enemyHealthBar.alpha = 0
+            attackButton.alpha = 0
+            runButton.alpha = 0
+            inKombat = false
+            player.exp += 10
+            straightButton.alpha = 1
+            rightButton.alpha = 1
+            leftButton.alpha = 1
+            pathSettings()
+            enemiesDefeated += 1
+            
+            if player.exp == player.levelUp
+            {
+                player.perkPoint = 1
+                player.levelUp += 100
+            }
+            }
+        else
+            {
+                enemyTurn()
+            }
+        }
+        else
+        {
+            enemy.health = enemy.health - 6
+            print(enemy.health)
+            enemyHealthAmount.text = String(enemy.health)
+            enemyHealthBar.progress = Float(enemy.health)
+            mainTextView.text = "your attack you dealt 6 damage"
+            if enemy.health <= 0
+            {
+                enemyNameLabel.text = " "
+                enemyHealthAmount.text = " "
+                enemyHealthBar.alpha = 0
+                attackButton.alpha = 0
+                runButton.alpha = 0
+                inKombat = false
+                player.exp += 10
+                straightButton.alpha = 1
+                rightButton.alpha = 1
+                leftButton.alpha = 1
+                pathSettings()
+                enemiesDefeated += 1
+                
+                if player.exp == player.levelUp
+                {
+                    player.perkPoint = 1
+                    player.levelUp += 100
+                }
+            }
+
+            
+        
+            else
+            {
+                enemyTurn()
+            }
+        }
+    }
+    
     func highDif()
     {
         let roll1 =  Int(arc4random_uniform(100)) + 1
         
         if roll1 <= 70{
-            enemy = Enemy(dmg: 1, dex: 1, isMagic: false, mdmg: 0, def: 1, name: "A disturbingly aggresive Ant", health: 10)
+            enemy = Enemy(dmg: 1, dex: 1, weakTo: 3, mdmg: 0, def: 1, name: "A disturbingly aggresive Ant", health: 10)
             combatScreenSet()
             inKombat = true
             if whatLevel > 1

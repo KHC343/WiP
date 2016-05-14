@@ -12,19 +12,18 @@ class Enemy: NSObject {
     var dmg = Int()
     var mdmg = Int()
     var dex = Int()
-    var isMagic = Bool()
+    var weakTo = Int()
     var def = Int()
     var name = String()
     var health = Int()
     
-    
-    convenience init(dmg: Int, dex: Int, isMagic: Bool, mdmg: Int, def: Int, name: String, health: Int)
+    convenience init(dmg: Int, dex: Int, weakTo: Int, mdmg: Int, def: Int, name: String, health: Int)
         
     {
         self.init()
         self.dmg = dmg
         self.dex = dex
-        self.isMagic = isMagic
+        self.weakTo = weakTo
         self.def = def
         self.mdmg = mdmg
         self.name = name
