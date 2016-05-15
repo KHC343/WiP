@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var straightButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var whatFloor: UILabel!
+    @IBOutlet weak var restartButton: UIButton!
     var whatLevel = Int()
     var enemiesDefeated = Int ()
     var inKombat = Bool()
@@ -158,16 +159,8 @@ class ViewController: UIViewController {
                     mainTextView.text = "they managed to avoid the majority of your attack you dealt " + String(roll2) + " damage"
                     if enemy.health <= 0
                     {
-                        enemyNameLabel.text = " "
-                        enemyHealthAmount.text = " "
-                        enemyHealthBar.alpha = 0
-                        attackButton.alpha = 0
-                        runButton.alpha = 0
-                        inKombat = false
+                        
                         player.exp += 10
-                        straightButton.alpha = 1
-                        rightButton.alpha = 1
-                        leftButton.alpha = 1
                         pathSettings()
                         enemiesDefeated += 1
                        
@@ -233,6 +226,7 @@ class ViewController: UIViewController {
                         attackButton.alpha = 0
                         itemButton.alpha = 0
                         statsButton.alpha = 0
+                        restartButton.alpha = 1
                     }
                 }
             }
@@ -560,6 +554,17 @@ class ViewController: UIViewController {
     
     func pathSettings()
     {
+        enemyNameLabel.text = " "
+        enemyHealthAmount.text = " "
+        enemyHealthBar.alpha = 0
+        attackButton.alpha = 0
+        runButton.alpha = 0
+        inKombat = false
+        straightButton.alpha = 1
+        rightButton.alpha = 1
+        leftButton.alpha = 1
+        mainTextView.text = "What Path do you take?"
+        
         let roll1 = Int(arc4random_uniform(3)) + 1
         if roll1 == 1
         {
@@ -602,6 +607,21 @@ class ViewController: UIViewController {
             right = "high"
         }
 
+    }
+    @IBAction func runAway(sender: AnyObject) {
+         let roll1 =  Int(arc4random_uniform(100)) + 1
+        if roll1 < 50 + whatLevel * 5
+        {
+            mainTextView.text = "You Escaped"
+            pathSettings()
+        }
+    }
+    @IBAction func restart(sender: AnyObject) {
+        player = Player(str: 1, dex: 1, magic: 1, def: 1, health: 10, level: 1, soda: 0, dietSoda: 1, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10, name: "Timmy", exp: 0, levelUp: 10, perkPoint: 0)
+        pathSettings()
+        inKombat = false
+        healthAmount.text = String(player.health)
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
