@@ -88,6 +88,7 @@ class ViewController: UIViewController {
         attackButton?.alpha = 0
         runButton?.alpha = 0
         continueButton?.alpha = 0
+        restartButton?.alpha = 0
         healthAmount.text = String(player.health)
         let cal = NSCalendar.currentCalendar()
           let comps = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: NSDate())
@@ -141,7 +142,7 @@ class ViewController: UIViewController {
             
             if dodgeChance >= 5
             {
-                var roll2 = Int(arc4random_uniform(3)) + player.str / 2
+                var roll2 = Int(arc4random_uniform(3)) + 1 + player.str
                 print(roll2)
                 roll2 = roll2 - enemy.def
                 print("withdodge")
@@ -149,6 +150,7 @@ class ViewController: UIViewController {
                 if roll2 <= 0
                 {
                     mainTextView.text = "They managed to dodge your attack."
+                    enemyTurn()
                 }
                 else
                 {
@@ -163,6 +165,8 @@ class ViewController: UIViewController {
                         player.exp += 10
                         pathSettings()
                         enemiesDefeated += 1
+                        inKombat = false
+
                        
                         if player.exp == player.levelUp
                         {
@@ -170,17 +174,39 @@ class ViewController: UIViewController {
                             player.levelUp += 100
                         }
                     }
+                    else
+                    {
+                        enemyTurn()
+                    }
                 }
         }
             else
             {
-                let roll2 = Int(arc4random_uniform(3)) + player.str / 2
+                let roll2 = Int(arc4random_uniform(3)) + 1 + player.str
                 enemy.health = enemy.health - roll2
                 print(enemy.health)
                 enemyHealthAmount.text = String(enemy.health)
                 enemyHealthBar.progress = Float(enemy.health)
                 mainTextView.text = "dead on hit you dealt " + String(roll2) + " damage"
-
+                if enemy.health <= 0
+                {
+                    
+                    player.exp += 10
+                    pathSettings()
+                    enemiesDefeated += 1
+                    inKombat = false
+                    
+                    
+                    if player.exp == player.levelUp
+                    {
+                        player.perkPoint = 1
+                        player.levelUp += 100
+                    }
+                }
+                else
+                {
+                    enemyTurn()
+                }
             }
         }
        enemyTurn()
@@ -200,7 +226,7 @@ class ViewController: UIViewController {
             
             if dodgeChance >= 5
             {
-                var roll2 = Int(arc4random_uniform(3)) + 1
+                var roll2 = Int(arc4random_uniform(3)) + 1 + enemy.dmg
                 print(roll2)
                 roll2 = roll2 - player.def
                 print("withdodge")
@@ -208,16 +234,14 @@ class ViewController: UIViewController {
                 if roll2 <= 0
                 {
                     mainTextView.text = "you managed to dodge their attack."
-
                 }
                 else
                 {
                     player.health = player.health - roll2
-                    print(enemy.health)
                     healthAmount.text = String(player.health)
                     mcHealthBar.progress = Float(player.health)
                     mainTextView.text = "you managed to avoid most of the damage you took " + String(roll2) + " damage"
-                    if player.health == 0
+                    if player.health <= 0
                     {
                         mainTextView.text = "GAME OVER"
                         healthAmount.alpha = 0
@@ -232,12 +256,25 @@ class ViewController: UIViewController {
             }
             else
             {
-                let roll2 = Int(arc4random_uniform(3)) + enemy.dmg / 2
+                let roll2 = Int(arc4random_uniform(3)) + 1 + enemy.dmg
                 player.health = player.health - roll2
                 print(player.health)
                 healthAmount.text = String(player.health)
                 mcHealthBar.progress = Float(player.health)
                 mainTextView.text = "dead on hit they dealt " + String(roll2) + " damage"
+            
+                if player.health <= 0
+                {
+                    mainTextView.text = "GAME OVER"
+                    healthAmount.alpha = 0
+                    mcHealthBar.alpha = 0
+                    runButton.alpha = 0
+                    attackButton.alpha = 0
+                    itemButton.alpha = 0
+                    statsButton.alpha = 0
+                    restartButton.alpha = 1
+                }
+
             }
         }
     }
@@ -429,14 +466,13 @@ class ViewController: UIViewController {
     
     func magicAttack()
     {
-        if enemy.weakTo == whatMagicType{
+        if enemy.weakTo == whatMagicType
+        {
             enemy.health = enemy.health - 6 * player.magic
-        
-        
-        print(enemy.health)
-        enemyHealthAmount.text = String(enemy.health)
-        enemyHealthBar.progress = Float(enemy.health)
-        mainTextView.text = "you dealt " + String(6 * player.magic) + " damage"
+            print(enemy.health)
+            enemyHealthAmount.text = String(enemy.health)
+            enemyHealthBar.progress = Float(enemy.health)
+            mainTextView.text = "you dealt " + String(6 * player.magic) + " damage"
         if enemy.health <= 0
         {
             enemyNameLabel.text = " "
@@ -450,6 +486,7 @@ class ViewController: UIViewController {
             rightButton.alpha = 1
             leftButton.alpha = 1
             pathSettings()
+            inKombat = false
             enemiesDefeated += 1
             
             if player.exp == player.levelUp
@@ -483,6 +520,7 @@ class ViewController: UIViewController {
                 rightButton.alpha = 1
                 leftButton.alpha = 1
                 pathSettings()
+                inKombat = false
                 enemiesDefeated += 1
                 
                 if player.exp == player.levelUp
@@ -559,7 +597,6 @@ class ViewController: UIViewController {
         enemyHealthBar.alpha = 0
         attackButton.alpha = 0
         runButton.alpha = 0
-        inKombat = false
         straightButton.alpha = 1
         rightButton.alpha = 1
         leftButton.alpha = 1
@@ -619,9 +656,16 @@ class ViewController: UIViewController {
     @IBAction func restart(sender: AnyObject) {
         player = Player(str: 1, dex: 1, magic: 1, def: 1, health: 10, level: 1, soda: 0, dietSoda: 1, shockGum: 0, waterBalloon: 0, matches: 0, healthMas: 10, name: "Timmy", exp: 0, levelUp: 10, perkPoint: 0)
         pathSettings()
+        statsButton.alpha = 1
+        itemButton.alpha = 1
         inKombat = false
         healthAmount.text = String(player.health)
-        
+        healthAmount.alpha = 1
+        mcHealthBar.alpha = 1
+        restartButton.alpha = 0
+    }
+    @IBAction func back(sender: AnyObject) {
+        whichViewSwitch = 3
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -642,6 +686,10 @@ class ViewController: UIViewController {
             odvc.whatLevel = whatLevel
 
 
+        }
+        else if whichViewSwitch == 3
+        {
+            
         }
     }
  
