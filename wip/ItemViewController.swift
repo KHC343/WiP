@@ -55,7 +55,7 @@ class ItemViewController: UIViewController {
     @IBAction func shockGumOnPush(sender: AnyObject) {
         usedMagic = true
         whatMagicType = 1
-        player.matches = player.matches - 1
+        player.shockGum = player.shockGum - 1
         updateItemAmount()
 
         
@@ -69,7 +69,7 @@ class ItemViewController: UIViewController {
     @IBAction func mathOnPush(sender: AnyObject) {
         usedMagic = true
         whatMagicType = 3
-        player.waterBalloon = player.waterBalloon - 1
+        player.matches = player.matches - 1
         updateItemAmount()
     }
     

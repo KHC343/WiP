@@ -172,6 +172,7 @@ class ViewController: UIViewController {
                         {
                             player.perkPoint = 1
                             player.levelUp += 100
+                            mainTextView.text = "LEVEL UP"
                         }
                     }
                     else
@@ -187,7 +188,7 @@ class ViewController: UIViewController {
                 print(enemy.health)
                 enemyHealthAmount.text = String(enemy.health)
                 enemyHealthBar.progress = Float(enemy.health)
-                mainTextView.text = "dead on hit you dealt " + String(roll2) + " damage"
+                mainTextView.text = "bullseye! You dealt " + String(roll2) + " damage"
                 if enemy.health <= 0
                 {
                     
@@ -201,6 +202,8 @@ class ViewController: UIViewController {
                     {
                         player.perkPoint = 1
                         player.levelUp += 100
+                        mainTextView.text = "LEVEL UP"
+
                     }
                 }
                 else
@@ -261,7 +264,7 @@ class ViewController: UIViewController {
                 print(player.health)
                 healthAmount.text = String(player.health)
                 mcHealthBar.progress = Float(player.health)
-                mainTextView.text = "dead on hit they dealt " + String(roll2) + " damage"
+                mainTextView.text = "Bullseye! they dealt " + String(roll2) + " damage"
             
                 if player.health <= 0
                 {
