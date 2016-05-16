@@ -79,9 +79,9 @@ class ViewController: UIViewController {
             player.soda = Int(preference.objectForKey("sodaKey")! as! NSNumber)
             player.dietSoda = Int(preference.objectForKey("dietSodaKey")! as! NSNumber)
             player.shockGum = Int(preference.objectForKey("shockGumKey")! as! NSNumber)
-            player.waterBalloon = Int(preference.objectForKey("wateBballoon")! as! NSNumber)
+            player.waterBalloon = Int(preference.objectForKey("waterBalloonKey")! as! NSNumber)
             player.matches = Int(preference.objectForKey("matchesKey")! as! NSNumber)
-            player.name = String(preference.objectForKey("nameKey")! as! NSNumber)
+            player.name = String(preference.objectForKey("nameKey")! as! NSString)
             player.perkPoint = Int(preference.objectForKey("perkPointKey")! as! NSNumber)
             whatLevel = Int(preference.objectForKey("whatLevelKey")! as! NSNumber)
         }
@@ -303,7 +303,7 @@ class ViewController: UIViewController {
     
     func randomItemEvent()
     {
-        let roll1 =  Int(arc4random_uniform(2)) + 1
+        let roll1 =  Int(arc4random_uniform(5)) + 1
         if roll1 == 1
         {
             player.dietSoda += 1
@@ -314,6 +314,24 @@ class ViewController: UIViewController {
             player.soda += 1
             mainTextView.text = "You found a soda"
 
+        }
+        else if roll1 == 3
+        {
+            player.matches += 1
+            mainTextView.text = "You found a match"
+            
+        }
+        else if roll1 == 4
+        {
+            player.waterBalloon += 1
+            mainTextView.text = "You found a waterBalloon"
+            
+        }
+        else if roll1 == 5
+        {
+            player.shockGum += 1
+            mainTextView.text = "You found a shockGum"
+            
         }
     }
     
