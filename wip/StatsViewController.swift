@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 
 class StatsViewController: UIViewController {
+    // Declaring Variables
     @IBOutlet weak var strAmount: UILabel!
     @IBOutlet weak var dexAmount: UILabel!
     @IBOutlet weak var defAmount: UILabel!

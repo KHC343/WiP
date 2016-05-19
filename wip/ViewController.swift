@@ -11,6 +11,7 @@ import Foundation
 import CoreMotion
 
 class ViewController: UIViewController {
+    //Declare Variables
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var enemyHealthBar: UIProgressView!
     @IBOutlet weak var mainTextView: UITextView!
@@ -49,7 +50,7 @@ class ViewController: UIViewController {
     var whatMagicType = Int()
     var usedMagic = Bool()
     var usedItem = Bool()
-    
+    // Need this for pedometer
     class Date {
         let calendar = NSCalendar.currentCalendar()
         var day: Int {
@@ -61,6 +62,7 @@ class ViewController: UIViewController {
         print(NSThread.callStackSymbols())
 
         super.viewDidLoad()
+        // If there's a save, load it.
         if loadOrSave == 1
         {
             whatLevel == 1
@@ -110,7 +112,6 @@ class ViewController: UIViewController {
                 self.player.dex = 2
             }
         }
-        
         if self.inKombat == true
         {
             combatScreenSet()

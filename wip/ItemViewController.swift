@@ -9,6 +9,7 @@
 import UIKit
 
 class ItemViewController: UIViewController {
+    //Declare variables
     @IBOutlet weak var dietSodaAmount: UILabel!
     @IBOutlet weak var sodaAmount: UILabel!
     @IBOutlet weak var matchAmount: UILabel!
